@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import HomeScreen from "./src/screens/HomeScreen";
+import ListSelections from "./src/screens/ListSelections";
+import ListSeparators from "./src/screens/ListSeparatorsScreen";
+import PullToRefresh from "./src/screens/PullToRefreshList";
+import SimpleList from "./src/screens/SimpleListScreen";
+import SwpipeToDeleteList from "./src/screens/SwipeToDeleteList";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    SimpleList: SimpleList,
+    ListSeparators: ListSeparators,
+    ListSelections: ListSelections,
+    SwipeToDeleteList: SwpipeToDeleteList,
+    PullToRefreshList: PullToRefresh
   },
-});
+  {
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      title: "RN List Building",
+    },
+  }
+)
+
+export default createAppContainer(navigator);
